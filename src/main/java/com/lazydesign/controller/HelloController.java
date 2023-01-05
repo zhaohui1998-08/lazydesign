@@ -13,7 +13,11 @@ public class HelloController {
 
     @GetMapping
     public String Hello222() {
-        return "222222";
+        return "777777777";
+    }
+    @GetMapping
+    public String Hello22222222() {
+        return "33333";
     }
 
 }
