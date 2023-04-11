@@ -49,13 +49,16 @@ public class CodeGenerator {
         gc.setOpen(false);
         gc.setServiceName("%Service");
         gc.setSwagger2(true);
-        gc.setFileOverride(false); //是否覆盖原有文件
+        gc.setFileOverride(false);//是否覆盖原有文件
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        //生成基本的SQL片段
+        gc.setBaseColumnList(true);;
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://localhost:3306/lazydesign?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        //   dsc.setUrl("jdbc:mysql://localhost:3306/lazydesign?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
