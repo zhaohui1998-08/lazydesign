@@ -1,6 +1,6 @@
 package com.lazydesign.service;
 
-import com.lazydesign.entity.English;
+import com.lazydesign.entity.Word;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,8 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author zhaohui
  * @since 2023-04-11
  */
-public interface EnglishService extends IService<English> {
-
-    int addWord(English english);
+public interface WordService extends IService<Word> {
 
 }

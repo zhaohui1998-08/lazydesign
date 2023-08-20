@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+    <!--    <script type="text/javascript">-->
+    <!--        // function dianji(){-->
+    <!--        //     var dadada={"name":"test001","pass":"xxxx"};-->
+    <!--        //     $.ajax({-->
+    <!--        //         type:"POST",-->
+    <!--        //         url:"http://127.0.0.1:8080/english/test",-->
+    <!--        //         data:dadada,-->
+    <!--        //         dataType:"json",-->
+    <!--        //         success:function (dadada) {-->
+    <!--        //             console.log(dadada);-->
+    <!--        //             var obj = JSON.parse(dadada);-->
+    <!--        //             console.log(obj);-->
+    <!--        //         },-->
+    <!--        //         error: function () {-->
+    <!--        //-->
+    <!--        //         }-->
+    <!--        //     });-->
+    <!--        //-->
+    <!--        // }-->
+    <!--        //点击按钮，发送ajax请求，将数据显示到页面中-->
+    <!--        $("#btn").click(function () {-->
+    <!--            $.ajax({-->
+    <!--                type: "POST",-->
+    <!--                url: "http://127.0.0.1:8080/english/test",-->
+    <!--                data: JSON.stringify({-->
+    <!--                    "id": "96"-->
+    <!--                }),-->
+    <!--                contentType: 'application/json',-->
+    <!--                dataType: "json",-->
+    <!--                success: function (data) {-->
+    <!--                    alert("ajax请求成功！");-->
+    <!--                    console.log(data);-->
+    <!--                    var obj = JSON.parse(data);-->
+    <!--                    console.log(obj);-->
+    <!--                    $("#text1").val(result.msg);-->
+
+    <!--                }-->
+    <!--            });-->
+    <!--        })-->
+    <!--    </script>-->
+    <!--    <script type="text/javascript">-->
+    <!--        function get() {-->
+    <!--            alert("222");-->
+    <!--            $.ajax({-->
+    <!--                type: "POST",-->
+    <!--                url: "http://127.0.0.1:8080/english/test2",-->
+    <!--                data: JSON.stringify({-->
+    <!--                    "id": "96"-->
+    <!--                }),-->
+    <!--                contentType: 'application/json',-->
+    <!--                dataType: "json",-->
+    <!--                success: function (data) {-->
+    <!--                    alert("ajax请求成功！");-->
+    <!--                    console.log(data);-->
+    <!--                    var obj = JSON.parse(data);-->
+    <!--                    console.log(obj);-->
+    <!--                    $("#text1").val(result.msg);-->
+
+    <!--                }-->
+    <!--            });-->
+
+    <!--        }-->
+    <!--    </script>-->
+
+    <!--    <input id="text1" name="text1"/>-->
+    <!--    <button type="button" value="查询数据" id="btn">查询数据</button>-->
+    <!--    <button type="button" value="123" id="btn1" onclick="get()">查询数据2</button>-->
+</head>
+<body>
+<script type="text/javascript">
+    function Get() {
+        var xmlhttp;
+        var Mac, Sn, DeviceId
+        if (window.XMLHttpRequest) {
+            //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("demo").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET", "http://127.0.0.1:8080/english/test", true);
+        xmlhttp.send();
+
+    }
+</script>
+
+<button type="button" onclick="Get()">11</button>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ package com.lazydesign.controller;
 import com.lazydesign.entity.English;
 import com.lazydesign.service.EnglishService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,6 +28,15 @@ public class EnglishController {
     public int addWord(English english) {
         int i = englisHervice.addWord(english);
         return i;
+    };
+    @GetMapping("/test")
+    public String test(String data) {
+        return "666666";
+    };
+
+    @GetMapping("/test2")
+    public String test2() {
+        return "/announcement/home.html";
     };
 
 

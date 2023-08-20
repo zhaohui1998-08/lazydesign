@@ -39,20 +39,17 @@ public class CodeGenerator {
     public static void main(String[] args) {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
-
-
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("zhaohui");
         gc.setOpen(false);
-        gc.setServiceName("%Service");
-        gc.setSwagger2(true);
-        gc.setFileOverride(false);//是否覆盖原有文件
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        gc.setServiceName("%sService");
+        gc.setSwagger2(true); //实体属性 Swagger2 注解
+        gc.setFileOverride(false); //是否覆盖原有文件
         //生成基本的SQL片段
-        gc.setBaseColumnList(true);;
+        gc.setBaseColumnList(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -100,36 +97,17 @@ public class CodeGenerator {
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
-        /*
-        cfg.setFileCreate(new IFileCreate() {
-            @Override
-            public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
-                // 判断自定义文件夹是否需要创建
-                checkDir("调用默认方法创建的目录，自定义目录用");
-                if (fileType == FileType.MAPPER) {
-                    // 已经生成 mapper 文件判断存在，不想重新生成返回 false
-                    return !new File(filePath).exists();
-                }
-                // 允许生成模板文件
-                return true;
-            }
-        });
-        */
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
-
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
-
         // 配置自定义输出模板
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // templateConfig.setEntity("templates/entity2.java");
         // templateConfig.setService();
         // templateConfig.setController();
-
         templateConfig.setXml(null);
         mpg.setTemplate(templateConfig);
-
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);

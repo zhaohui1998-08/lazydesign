@@ -19,8 +19,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="English对象", description="")
-public class English implements Serializable {
+@ApiModel(value="Word对象", description="")
+public class Word implements Serializable {
 
     @TableId
     private static final long serialVersionUID = 1L;
@@ -29,7 +29,8 @@ public class English implements Serializable {
 
     private String translate;
 
+    private String creatime;
+
    // private String id;
 
-    private String creatime;
 }

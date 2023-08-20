@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @author zhaohui
  * @since 2023-04-11
  */
-@Service
+@Service("englishService")
 public class EnglishServiceImpl extends ServiceImpl<EnglishMapper, English> implements EnglishService {
 
 
@@ -25,8 +25,8 @@ public class EnglishServiceImpl extends ServiceImpl<EnglishMapper, English> impl
     BaseMapper baseMapper;
 
     @Override
-    public int addWord(English word) {
-        int insert = baseMapper.insert(word);
+    public int addWord(English english) {
+        int insert = baseMapper.insert(english);
         return  insert;
     }
 }
