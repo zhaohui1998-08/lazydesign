@@ -2,7 +2,7 @@ package com.lazydesign.service;
 
 import com.lazydesign.entity.Analyzing;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lazydesign.entity.English;
+import java.util.List;
 
 /**
  * <p>
@@ -16,4 +16,6 @@ public interface AnalyzingService extends IService<Analyzing> {
 
 
     int addAnalyz(Analyzing analyzing);
+
+    List<Analyzing> selAllAnalyz();
 }

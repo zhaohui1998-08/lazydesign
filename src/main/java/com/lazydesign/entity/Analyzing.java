@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 
 /**
  * <p>
@@ -27,7 +27,7 @@ public class Analyzing implements Serializable{
 
     private String id = UUID.randomUUID().toString();
 
-    private Timestamp createTime;
+    private Timestamp createTime = new Timestamp(System.currentTimeMillis());;
 
     private String address;
 

@@ -29,8 +29,6 @@ public class EnglishServiceImpl extends ServiceImpl<EnglishMapper, English> impl
 
     @Override
     public int addEnglish(English english) {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        english.setCreateTime(timestamp);
         int insert = englishMapper.insert(english);
         return  insert;
     }

@@ -28,11 +28,11 @@ public class English implements Serializable {
 
     private String id = UUID.randomUUID().toString();
 
+    private Timestamp createTime = new Timestamp(System.currentTimeMillis());;
+
     private String word;
 
     private String translate;
-
-    private Timestamp createTime;
 
 
 }
