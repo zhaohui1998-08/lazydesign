@@ -1,15 +1,14 @@
 package com.lazydesign.service.impl;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lazydesign.entity.English;
-import com.lazydesign.mapper.EnglishMapper;
-import com.lazydesign.service.EnglishService;
+import com.lazydesign.entity.Analyzing;
+import com.lazydesign.mapper.AnalyzingMapper;
+import com.lazydesign.service.AnalyzingService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * <p>
@@ -17,20 +16,19 @@ import java.util.Date;
  * </p>
  *
  * @author zhaohui
- * @since 2023-04-11
+ * @since 2024-01-08
  */
-@Service("englishService")
-public class EnglishServiceImpl extends ServiceImpl<EnglishMapper, English> implements EnglishService {
-
+@Service("analyzingService")
+public class AnalyzingServiceImpl extends ServiceImpl<AnalyzingMapper, Analyzing> implements AnalyzingService {
 
     @Resource
     BaseMapper baseMapper;
 
     @Override
-    public int addEnglish(English english) {
+    public int addAnalyz(Analyzing analyzing) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        english.setCreateTime(timestamp);
-        int insert = baseMapper.insert(english);
+        analyzing.setCreateTime(timestamp);
+        int insert = baseMapper.insert(analyzing);
         return  insert;
     }
 }

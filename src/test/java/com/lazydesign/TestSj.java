@@ -1,5 +1,6 @@
 package com.lazydesign;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lazydesign.entity.English;
 import com.lazydesign.service.EnglishService;
 import org.apache.http.HttpEntity;
@@ -7,47 +8,64 @@ import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+
+import static com.sun.org.apache.xml.internal.serialize.OutputFormat.Defaults.Encoding;
 
 @SpringBootTest
 public class TestSj {
 
     @Autowired
     EnglishService englisHervice;
+    private HttpPost httpPost;
 
     @Test
-    public void QWE() {
-     //   String kami = "FD37-5F89-B3CE-BFFC";
+    public void QWE() throws InterruptedException, java.text.ParseException {
+        //   String kami = "FD37-5F89-B3CE-BFFC";
+//
+//        for (int i = 0; i < 99999999; i++) {
+//            TimeUnit.MILLISECONDS.sleep(500);
+////            String s = zhuan2(kami);
+////            String jieshu = zhuan16(s);
+////            kami = jieshu;
+////            doUpload(kami, i);
+//
+//            String shengcheng = shengcheng();
+//            doUpload(shengcheng, i);
 
-        for (int i = 0; i < 99999; i++) {
 
-//            String s = zhuan2(kami);
-//            String jieshu = zhuan16(s);
-//            kami = jieshu;
-//            doUpload(kami, i);
-
-            String shengcheng = shengcheng();
-            doUpload(shengcheng, i);
-        }
-
+   //     }
 
 //        String er = Integer.toBinaryString(Integer.parseInt(aa, 16));
 //        System.out.println(er);
+
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String date = "2020-03-26 14:47:10";
+
+        Date parse = sdf.parse(date);
+        System.out.println(parse);
+
+
     }
+
 
 
     //生成卡密
@@ -55,11 +73,19 @@ public class TestSj {
         String kami = "";
         ThreadLocalRandom random = ThreadLocalRandom.current();
         for (int i = 0; i < 16; i++) {
-            int i1 = random.nextInt(16);
-            String s = Integer.toHexString(i1);
+            int i1 = 0;
+            String s = "";
+            if (i == 2 || i == 3 || i == 6 || i == 7 || i == 10 || i == 11 || i == 14 || i == 15 ) {
+                i1 = random.nextInt(10);
+                s = String.valueOf(i1);
+            } else {
+                Random random16 = new Random();
+                char c = (char)(random16.nextInt((26))+65);
+                s = String.valueOf(c);
+            }
             kami += s;
-            if (i == 3 || i == 7 || i ==11) {
-                kami+="-";
+            if (i == 3 || i == 7 || i == 11) {
+                kami += "-";
             }
         }
 
@@ -141,10 +167,19 @@ public class TestSj {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
         // 创建Post请求
-        HttpPost httpPost = new HttpPost("https://api.libi.li/CardLogin" + "?card=" + params);
-
+        //  HttpPost httpPost = new HttpPost("https://api.libi.li/CardLogin" + "?card=" + params);
+        //copy box
+        httpPost = new HttpPost("https://tao.tudingvip.top/index/account/login1.html");
+        //httpPost.setHeader("card_id", "JD72-VG79-NK93-CI4611");
         // 设置ContentType(注:如果只是传普通参数的话,ContentType不一定非要用application/json)
         httpPost.setHeader("Content-Type", "application/json;charset=utf8");
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        MediaType application = new MediaType("application", "x-www-form-urlencoded");
+        HashMap<String, String> bodyData = new HashMap<>();
+        bodyData.put("card_id", params);
+        httpHeaders.setContentType(application);
+        httpPost.setEntity(new StringEntity(JSONObject.toJSONString(bodyData), Encoding));
 
         // 响应模型
         CloseableHttpResponse response = null;
@@ -154,7 +189,6 @@ public class TestSj {
             // 从响应模型中获取响应实体
             HttpEntity responseEntity = response.getEntity();
 
-            System.out.println("响应状态为:" + response.getStatusLine());
             English english = new English();
 //            UUID uuid = UUID.randomUUID();
 //            english.setId(uuid.toString());
@@ -162,8 +196,9 @@ public class TestSj {
             english.setWord("失败");
             if (responseEntity != null) {
                 String s = EntityUtils.toString(responseEntity);
-                english.setWord("无效");
-                if (!s.contains("卡密无效")) {
+                english.setWord("无效卡密");
+                System.out.println("响应状态为:" + response.getStatusLine() + "  卡密不存在:" + params);
+                if (!s.contains("卡密不存在") && !s.contains("您已登录")) {
                     System.out.println("---------------------------------------------:" + params);
                     english.setWord("成功");
                 }
@@ -171,8 +206,6 @@ public class TestSj {
             }
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm: ss");
             String format = simpleDateFormat.format(new Date());
-            english.setCreatime(format);
-            int i = englisHervice.addWord(english);
 
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -181,7 +214,7 @@ public class TestSj {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (end == 99999) {
+            if (end == 99999999) {
                 try {
                     // 释放资源
                     if (httpClient != null) {
@@ -198,5 +231,27 @@ public class TestSj {
         }
 
     }
+
+    //调用
+//    @Test
+//    public void qwerqqq() throws Exception {
+//        String url = "https://tao.tudingvip.top/index/account/login1.html";
+//        Map<String, String> headers = new HashMap<String, String>();
+//        headers.put("accept", "application/json;charset=UTF-8");
+//        headers.put("Content-Type", "application/json;charset=UTF-8");
+//
+////        Map<String, Object> bodyParams = new HashMap<String, Object>();
+////        bodyParams.put("realName", "xxx");
+////        bodyParams.put("idCard", "xxx");
+////        bodyParams.put("phoneNumber", "xxx");
+//
+//        //post 请求
+//        HttpResponse<String> httpResponse = Unirest.post(url)
+//                .headers(headers)
+//                .field("card_id", "JD72-VG79-NK93-CI46")
+//                .asString();
+//        System.out.println(httpResponse.toString());
+//    }
+
 
 }

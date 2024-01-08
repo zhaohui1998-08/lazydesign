@@ -1,28 +1,16 @@
 package com.lazydesign;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.junit.jupiter.api.Test;
-import sun.misc.BASE64Decoder;
-
-import javax.crypto.Cipher;
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.security.Key;
-import java.util.HashMap;
 
-import static sun.security.x509.CertificateAlgorithmId.ALGORITHM;
 
 
 public class testAPI {

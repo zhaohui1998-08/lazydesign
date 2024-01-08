@@ -1,0 +1,31 @@
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="myConsole" target="SYSTEM_OUT">
+            <!-- 99代表显示长度 -->
+            <PatternLayout pattern="[%d{MM-dd HH:mm:ss} %-5p] [%t] %c{99/} - %m%n%ex"/>
+        </Console>
+
+        <Console name="myConsole2" target="STDOUT">
+            <PatternLayout pattern="[%d{MM-dd HH:mm:ss} %-5p] [%t] %c{2\} - %m%n%ex"/>
+        </Console>
+        <RollingFile name="activexAppender" fileName="../log/jxedtgouchescf.log" filePattern="../log/jxedtgouchescf.log.%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <Pattern>[%d{MM-dd HH:mm:ss SSS} %-5level] [%t] %c{3} - %m%n%ex</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="myConsole"/>
+            <AppenderRef ref="activexAppender"/>
+        </Root>
+        <!--这里的name为你自己mapper的地址-->
+        <Logger name="com.lazydesign.mapper" level="DEBUG">
+            <AppenderRef ref="myConsole"/>
+        </Logger>
+    </Loggers>
+</Configuration>
+

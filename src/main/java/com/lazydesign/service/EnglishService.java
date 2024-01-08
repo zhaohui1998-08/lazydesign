@@ -13,6 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EnglishService extends IService<English> {
 
-    int addWord(English english);
+    int addEnglish(English english);
+
+
 
 }

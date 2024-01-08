@@ -1,9 +1,8 @@
 package com.lazydesign.mapper;
 
-import com.lazydesign.entity.Word;
+import com.lazydesign.entity.Analyzing;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.context.annotation.Primary;
 
 /**
  * <p>
@@ -11,10 +10,9 @@ import org.springframework.context.annotation.Primary;
  * </p>
  *
  * @author zhaohui
- * @since 2023-04-11
+ * @since 2024-01-08
  */
 @Mapper
-@Primary
-public interface WordMapper extends BaseMapper<Word> {
+public interface AnalyzingMapper extends BaseMapper<Analyzing> {
 
 }

@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/english")
 public class EnglishController {
     @Autowired
-    EnglishService englisHervice;
+    EnglishService englishService;
 
-    @PostMapping("/addWord")
-    public int addWord(English english) {
-        int i = englisHervice.addWord(english);
+    @PostMapping("/addEnglish")
+    public int addEnglish(English english) {
+        int i = englishService.addEnglish(english);
         return i;
     };
     @GetMapping("/test")
@@ -38,6 +38,5 @@ public class EnglishController {
     public String test2() {
         return "/announcement/home.html";
     };
-
 
 }
