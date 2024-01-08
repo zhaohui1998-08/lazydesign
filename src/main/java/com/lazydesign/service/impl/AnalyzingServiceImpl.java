@@ -5,6 +5,7 @@ import com.lazydesign.entity.Analyzing;
 import com.lazydesign.mapper.AnalyzingMapper;
 import com.lazydesign.service.AnalyzingService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,14 +22,15 @@ import java.sql.Timestamp;
 @Service("analyzingService")
 public class AnalyzingServiceImpl extends ServiceImpl<AnalyzingMapper, Analyzing> implements AnalyzingService {
 
-    @Resource
-    BaseMapper baseMapper;
+    @Autowired
+    AnalyzingMapper analyzingMapper;
+
 
     @Override
     public int addAnalyz(Analyzing analyzing) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         analyzing.setCreateTime(timestamp);
-        int insert = baseMapper.insert(analyzing);
+        int insert = analyzingMapper.insert(analyzing);
         return  insert;
     }
 }

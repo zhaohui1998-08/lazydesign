@@ -5,6 +5,7 @@ import com.lazydesign.entity.English;
 import com.lazydesign.mapper.EnglishMapper;
 import com.lazydesign.service.EnglishService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,14 +24,14 @@ import java.util.Date;
 public class EnglishServiceImpl extends ServiceImpl<EnglishMapper, English> implements EnglishService {
 
 
-    @Resource
-    BaseMapper baseMapper;
+    @Autowired
+    EnglishMapper englishMapper;
 
     @Override
     public int addEnglish(English english) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         english.setCreateTime(timestamp);
-        int insert = baseMapper.insert(english);
+        int insert = englishMapper.insert(english);
         return  insert;
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * data:2023/1/8
  */
 @SpringBootApplication
-//@MapperScan(basePackages = { "com.lazydesign.mapper"})
+@MapperScan(basePackages = "com.lazydesign.mapper")
 public class LazydesignApplication {
     public static void main(String[] args) {
         SpringApplication.run(LazydesignApplication.class, args);
