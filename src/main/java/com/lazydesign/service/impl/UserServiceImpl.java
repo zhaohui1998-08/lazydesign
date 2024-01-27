@@ -1,5 +1,6 @@
 package com.lazydesign.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.lazydesign.entity.User;
 import com.lazydesign.mapper.UserMapper;
@@ -51,5 +52,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             log.info("插入用户操作数据{}条",i);
         }
         return update;
+    }
+
+    @Override
+    public User selectUser(User user) {
+        QueryWrapper<User> objectQueryWrapper = new QueryWrapper<>();
+        objectQueryWrapper.eq("user_name",user.getUserName()).eq("pass_word",user.getPassWord());
+        User reqUser = userMapper.selectOne(objectQueryWrapper);
+        return reqUser;
     }
 }

@@ -17,4 +17,6 @@ public interface UserService extends IService<User> {
 
     int upUserById(User user,String newPassWord);
 
+    User selectUser(User user);
+
 }
