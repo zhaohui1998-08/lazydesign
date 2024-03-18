@@ -1,52 +1,28 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>用户登录首页1111111</title>
+    <title>我的主页面</title>
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
-
 <body>
-登录人: <span id="loginUser"></span>
+<header>
+    <nav>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">联系我们</a></li>
+        </ul>
+    </nav>
+</header>
 
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script>
-    // 页面加载时，就去调用后端请求(立即执行)
-    $.ajax({
-        url: "/user/login1",
-        type: "get",
-        success:function (username){
-            alert(username);
-            $("#loginUser").text(username);   // text 表示往该选择器放值，此处放username这个值
-        }
-    });
+<main>
+    <h1>欢迎来到我的网站！</h1>
+    <p>这是一个带有样式的主页面示例，你可以根据需要添加内容和功能。</p>
+</main>
 
-    // // 发送登录请求到后端接口
-    // fetch("user/login1", {
-    //     method: "GET",
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify("aaa")
-    // })
-    //     .then(data => {
-    //         data.json().then(value => {
-    //
-    //             if (value[0] == 1) {
-    //                 $("#loginUser").text(value[2]);   // text 表示往该选择器放值，此处放username这个值
-    //             } else {
-    //                 alert("登录失败，请检查用户名和密码。");
-    //             }
-    //         })
-    //
-    //
-    //
-    //     })
-    //     .catch(error => console.error("登录请求失败:", error));
-</script>
+<footer>
+    <p>版权所有 © 你的网站名称</p>
+</footer>
 </body>
-
 </html>
